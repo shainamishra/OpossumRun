@@ -6,10 +6,11 @@ class Play extends Phaser.Scene {
     preload() {
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
+        //this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('fish', './assets/fish.png');
         this.load.image('watermelon', './assets/watermelon.png');
         this.load.image('trash', './assets/trash.png');
+        this.load.image('car', './assets/car.png');
         this.load.image('starfield', './assets/starfield.png');
         
         // load spritesheet
@@ -32,10 +33,11 @@ class Play extends Phaser.Scene {
         // add rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
     
-        // add spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'fish', 0, 30).setOrigin(0, 0);
+        // add spaceships (x4)
+        this.ship01 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'car', 0, -10).setOrigin(0,0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'watermelon', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'trash', 0, 10).setOrigin(0,0);
+        this.ship04 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'fish', 0, 30).setOrigin(0, 0);
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -55,7 +57,7 @@ class Play extends Phaser.Scene {
 
         // display score
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Monaco',
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#843605',
@@ -67,6 +69,7 @@ class Play extends Phaser.Scene {
             
             fixedWidth: 100
         }
+
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
     
         // GAME OVER flag
@@ -79,6 +82,7 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart ← for Menu', scoreConfig).setOrigin(0.5);
         this.gameOver = true;
         }, null, this);
+        //this.clockTimer.text = (Math.floor(this.clock.getRemainingSeconds()));
     }
 
     update() {
@@ -98,21 +102,29 @@ class Play extends Phaser.Scene {
             this.ship01.update();           // update spaceships (x3)
             this.ship02.update();
             this.ship03.update();
+            this.ship04.update();
         } 
 
         // check collisions
+        if(this.checkCollision(this.p1Rocket, this.ship04)) {
+            this.p1Rocket.reset();
+            this.shipExplode(this.ship04);   
+        }
+
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);   
-          }
-          if (this.checkCollision(this.p1Rocket, this.ship02)) {
+        }
+
+        if (this.checkCollision(this.p1Rocket, this.ship02)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship02);
-          }
-          if (this.checkCollision(this.p1Rocket, this.ship01)) {
+        }
+          
+        if (this.checkCollision(this.p1Rocket, this.ship01)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
-          }
+        }
     }
 
     checkCollision(rocket, ship) {
@@ -140,9 +152,20 @@ class Play extends Phaser.Scene {
         });       
 
         // score add and repaint
-        this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score;       
-    
-        this.sound.play('sfx_explosion');
+        if(ship != this.ship01){
+            this.p1Score += ship.points;
+            this.scoreLeft.text = this.p1Score;       
+            //this.sound.play('sfx_explosion');
+            this.sound.play('sfx_monch');
+            console.log("monch");
+            
+        } else {
+            this.p1Score -= 10;
+            this.scoreLeft.text = this.p1Score; 
+            // yelling sound effect
+            this.sound.play('sfx_scream');
+            console.log("scream");
+        }
+        
     }
 }
