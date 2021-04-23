@@ -8,7 +8,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_scream', './assets/he_scream.wav');
-        this.load.audio('sfx_monch', './assets/he_scream.wav');
+        this.load.audio('sfx_monch', './assets/monch.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
@@ -48,6 +48,7 @@ class Menu extends Phaser.Scene {
           // Novice mode
           game.settings = {
             spaceshipSpeed: 3,
+            fishSpeed: 6,
             gameTimer: 60000    
           }
           this.sound.play('sfx_select');
@@ -57,6 +58,7 @@ class Menu extends Phaser.Scene {
           // Expert mode
           game.settings = {
             spaceshipSpeed: 4,
+            fishSpeed: 6,
             gameTimer: 45000    
           }
           this.sound.play('sfx_select');
