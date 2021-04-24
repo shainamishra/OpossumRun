@@ -17,26 +17,33 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        // green UI background
-        //this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
-        
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
-        // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0x000000).setOrigin(0, 0);
-    
         // add rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
     
+        this.tweens.add({
+            targets: [this.p1Rocket], // the opposum -- make it match the variable name in your code
+            angle: {from: -10, to: 10}, // a slight angular wiggle
+            yoyo: true, // back and forth
+            repeat: -1, // forever
+            duration: 300 // wiggle speed -- tune this number up and down until it feels natural
+        });
+
         // add spaceships (x4)
         this.ship01 = new Spaceship(this, game.config.width, borderUISize*8 + borderPadding*4, 'car', 0, 0).setOrigin(0,0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'watermelon', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'trash', 0, 10).setOrigin(0,0);
         this.fish01 = new Fish(this, game.config.width + borderUISize*6, borderUISize*4, 'fish', 0, 30).setOrigin(0, 0);
+
+        this.tweens.add({
+            targets: [this.fish01], // the opposum -- make it match the variable name in your code
+            angle: {from: -10, to: 10}, // a slight angular wiggle
+            yoyo: true, // back and forth
+            repeat: -1, // forever
+            duration: 300 // wiggle speed -- tune this number up and down until it feels natural
+        });
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -56,7 +63,7 @@ class Play extends Phaser.Scene {
 
         // display score
         let scoreConfig = {
-            fontFamily: 'Minecraft',
+            fontFamily:  'Monaco',
             fontSize: '28px',
             backgroundColor: '#000000',
             color: '#ff0000',
@@ -81,7 +88,6 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart ← for Menu', scoreConfig).setOrigin(0.5);
         this.gameOver = true;
         }, null, this);
-        //this.clockTimer.text = (Math.floor(this.clock.getRemainingSeconds()));
     }
 
     update() {
@@ -155,20 +161,17 @@ class Play extends Phaser.Scene {
             this.p1Score += ship.points;
             this.scoreLeft.text = this.p1Score;
             this.sound.play('sfx_monch');
-            console.log("monch");
             
         }else if(ship == this.fish01){
             this.p1Score += ship.points*2;
             this.scoreLeft.text = this.p1Score;
             this.sound.play('sfx_monch');
-            console.log("fish");
             
         } else {
             this.p1Score -= 10;
             this.scoreLeft.text = this.p1Score; 
             // yelling sound effect
             this.sound.play('sfx_scream');
-            console.log("scream");
         }
     }
 }

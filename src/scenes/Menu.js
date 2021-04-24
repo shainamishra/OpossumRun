@@ -9,7 +9,8 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_scream', './assets/he_scream.wav');
         this.load.audio('sfx_monch', './assets/monch.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.audio('sfx_beep', './assets/beep.wav');
+        this.load.audio('sfx_rocket', './assets/hehe.wav');
         this.load.image('title', './assets/title.png');
     }
 
@@ -52,7 +53,7 @@ class Menu extends Phaser.Scene {
             fishSpeed: 5,
             gameTimer: 60000    
           }
-          this.sound.play('sfx_select');
+          this.sound.play('sfx_beep');
           this.scene.start("playScene");    
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
@@ -62,7 +63,7 @@ class Menu extends Phaser.Scene {
             fishSpeed: 6,
             gameTimer: 45000    
           }
-          this.sound.play('sfx_select');
+          this.sound.play('sfx_beep');
           this.scene.start("playScene");    
         }
       }
