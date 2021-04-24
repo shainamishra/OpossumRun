@@ -20,7 +20,7 @@ Create a new spaceship type (w/ new artwork) that's smaller, moves faster, and i
   - The fish which is smaller, moves faster, is worth 60 points, and was drawn by me.
   
 Create new artwork for all of the in-game assets (rocket, spaceships, explosion) (20) 
-  - Ff the 60 point one is inapplicable for whatever reason.
+  - If the 60 point one is inapplicable for whatever reason.
   
 Create and implement a new weapon (w/ new behavior and graphics) (20)
 Redesign the game's artwork, UI, and sound to change its theme/aesthetic (to something other than sci-fi) (60)
