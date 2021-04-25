@@ -9,10 +9,10 @@ Modifications
 Created breathing animations using Tween
   - Not sure if this would count for points but the Opossum and the Fish wiggle.
   - I recieved help from Adam Smith.
-  - 
+  
 Add your own (copyright-free) background music to the Play scene (5)
-  - Fucnky royalty-free tunes.
-  - 
+  - Funky royalty-free tunes.
+  
 Create a new scrolling tile sprite for the background (5)
   - The header flames which I drew.
   
