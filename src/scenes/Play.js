@@ -11,12 +11,21 @@ class Play extends Phaser.Scene {
         this.load.image('trash', './assets/trash.png');
         this.load.image('car', './assets/car.png');
         this.load.image('starfield', './assets/starfield.png');
+        this.load.audio('background', './assets/french.wav');
         
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
 
     create() {
+        /*
+        menuMusic = this.sound.add('background');
+        menuMusic.setLoop(true);
+        menuMusic.stop();
+        */
+
+        this.sound.play('background');
+
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
@@ -50,7 +59,8 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
- 
+
+        
         // animation config
         this.anims.create({
         key: 'explode',
@@ -129,6 +139,7 @@ class Play extends Phaser.Scene {
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
+            //spaceshipSpeed: 10;
         }
     }
 

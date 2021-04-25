@@ -53,8 +53,8 @@ class Menu extends Phaser.Scene {
             fishSpeed: 5,
             gameTimer: 60000    
           }
-          this.sound.play('sfx_beep');
-          this.scene.start("playScene");    
+          this.sound.play('sfx_beep');  
+          this.scene.start("playScene");  
         }
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
           // Expert mode
