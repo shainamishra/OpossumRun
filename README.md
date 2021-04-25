@@ -26,5 +26,7 @@ Create new artwork for all of the in-game assets (rocket, spaceships, explosion)
   - If the 60 point one is inapplicable for whatever reason.
   
 Create and implement a new weapon (w/ new behavior and graphics) (20)
+   - The car is worth -10 points.
+ 
 Redesign the game's artwork, UI, and sound to change its theme/aesthetic (to something other than sci-fi) (60)
   - I created an entirely new title screen, a new starfield, a new explosion animation, all new sprites (car, trash, fish, watermelon, opossum, and fire), the fish and the car have different mechanics from the oringal spaceships, I found or made all of my own sounds, and I created a Hell-scape with an Opossum Overlord which is quite different from sci-fi.
