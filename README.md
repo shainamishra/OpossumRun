@@ -1,7 +1,4 @@
 # OpossumRun
-
-Assignment
-
 Implement modifications to the Rocket Patrol tutorial game created in class. You construct your grade by selecting from the possibilities below and summing their respective point values (max: 100). Modifications are grouped by relative difficulty. If a higher-tier modification includes one of the lower-tier modifications, you will only receive the points for the higher tier (i.e., no double dipping 🥨). Note that some of the more difficult modifications might require you to do some research on Phaser features that we haven't yet covered.
 
 Modifications
